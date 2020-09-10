@@ -1,0 +1,30 @@
+img {
+  width: 50px;
+}
+
+.leftPanel {
+  border: solid 1px;
+  height: 100vh;
+}
+
+.centerPanel {
+  border: solid 1px;
+  padding-top: 30px;
+}
+
+.rightPanel {
+  border: solid 1px;
+}
+
+.post {
+  border: solid 1px;
+  margin-bottom: 30px;
+}
+
+.postFunction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feed {
+}
