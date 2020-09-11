@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -14,34 +19,90 @@
     />
   </head>
   <body>
-      <div>
+    <div>
       <form>
         <div class="row">
           <div class="col-3 leftPanel">
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Tweet
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1><!--Insert input box --></h1>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Insert old tweet -->
+                    .
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Retweet
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <h2>TWITTER</h2>
           </div>
           <form>
-          <div class="col-6 centerPanel">
-            <div class="post">
-              <div>
-                <input id="postInput" maxlength="140" onkeyup="count()" type="text"/>
-              </div>
-              <div class="postFunction">
+            <div class="col-6 centerPanel">
+              <div class="post">
                 <div>
-                  <i class="far fa-image"></i>
-                  <i class="fas fa-video"></i>
-                  <i class="far fa-smile"></i>
+                  <input
+                    id="postInput"
+                    maxlength="140"
+                    onkeyup="count()"
+                    type="text"
+                  />
                 </div>
-                <div>Words remaining:
-                  <span id="wordCount"></span>
-                  <button onclick="postTweet()" type="button">Tweet</button>
+                <div class="postFunction">
+                  <div>
+                    <i class="far fa-image"></i>
+                    <i class="fas fa-video"></i>
+                    <i class="far fa-smile"></i>
+                  </div>
+                  <div>
+                    Words remaining:
+                    <span id="wordCount"></span>
+                    <button onclick="postTweet()" type="button">Tweet</button>
+                  </div>
                 </div>
               </div>
-         
-            </div>
-            <!-- feed section is below -->
-           
-            <div class="card border-success mb-3">
+              <!-- feed section is below -->
+              <div id="feed"></div>
+              <!-- <div class="card border-success mb-3">
                 <div class="card-header bg-transparent border-success">
                     <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
                 <div>UserName</div>
@@ -58,13 +119,15 @@
                 <i class="far fa-edit"></i>
                 <i class="fas fa-trash-alt"></i>
                 </div>
-              </div>
-          </div>
+              </div> -->
+            </div>
+          </form>
           <div class="col-3 rightPanel"></div>
         </div>
       </form>
     </div>
     <!-- script -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
