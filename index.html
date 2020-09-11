@@ -24,7 +24,7 @@
           <div class="col-6 centerPanel">
             <div class="post">
               <div>
-                <input id="postInput"/>
+                <input id="postInput" maxlength="140" onkeyup="count()" type="text"/>
               </div>
               <div class="postFunction">
                 <div>
@@ -32,9 +32,9 @@
                   <i class="fas fa-video"></i>
                   <i class="far fa-smile"></i>
                 </div>
-                <div>
-                  <span id="wordCount">words remaining</span>
-                  <button onclick="postTweet()">Tweet</button>
+                <div>Words remaining:
+                  <span id="wordCount"></span>
+                  <button onclick="postTweet()" type="button">Tweet</button>
                 </div>
               </div>
          
@@ -56,6 +56,7 @@
                 <i class="fas fa-retweet"></i>
                 <i class="far fa-heart"></i>
                 <i class="far fa-edit"></i>
+                <i class="fas fa-trash-alt"></i>
                 </div>
               </div>
           </div>
