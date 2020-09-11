@@ -1,8 +1,6 @@
 let tweets = [];
 let currentUser = "Lukas"
 
-
-
 let render = () => {
     let tweetHTML = tweets.map((item)=>`
      <div class="card border-success mb-3">
@@ -27,9 +25,7 @@ let render = () => {
     console.log(tweets)
 }   
 
-let getHashTag = (text) => {
-
-}
+let getHashTag = (text) => {};
 
 let postTweet = () => {
     console.log("tweeted")
@@ -58,3 +54,9 @@ let postComment = () => {
     let commentContent = document.getElementById("")
 }
 
+document.getElementById("wordCount").innerHTML = 140;
+let count = () => {
+  let input = document.getElementById("postInput").value;
+  let inputLetter = input.split("");
+  document.getElementById("wordCount").innerHTML = 140 - inputLetter.length;
+};
