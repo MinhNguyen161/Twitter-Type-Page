@@ -21,7 +21,7 @@
   <body>
     <form>
       <div class="row">
-        <div class="col-12 col-md-3 leftPanel">
+        <div class="col-12 col-md-4 leftPanel">
           <!-- Button trigger modal -->
           <!-- <button
             type="button"
@@ -73,15 +73,46 @@
           <div class="leftPanelHeader">
             <i class="fab fa-twitter fa-2x" color="white"></i>
           </div>
-          <h2>TWITTER</h2>
+          <div class="leftPanelContent">
+            <p class="leftInfo">
+              <i class="fas fa-home fa-lg"></i> &nbsp; Home
+            </p>
+            <p class="leftInfo">
+              <i class="fab fa-slack-hash fa-lg"></i> &nbsp; Explore
+            </p>
+            <p class="leftInfo">
+              <i class="far fa-bell fa-lg"></i> &nbsp; Notifications
+            </p>
+            <p class="leftInfo">
+              <i class="far fa-envelope fa-lg"></i> &nbsp; Messages
+            </p>
+            <p class="leftInfo">
+              <i class="far fa-bookmark fa-lg"></i> &nbsp; Bookmarks
+            </p>
+            <p class="leftInfo">
+              <i class="far fa-list-alt fa-lg"></i> &nbsp; Lists
+            </p>
+            <p class="leftInfo">
+              <i class="far fa-user-circle fa-lg"></i> &nbsp; Profile
+            </p>
+          </div>
+          <div class="leftPanelFooter">
+            <img
+              src="images/profile.png"
+              alt=""
+              class="rounded-circle"
+              style="margin-right: 15px"
+            />
+            <div>Lukas</div>
+          </div>
         </div>
 
         <!-- Below is center panel -->
-        <div class="col-12 col-md-6 centerPanel">
+        <div class="col-12 col-md-4 centerPanel">
           <div class="centerPanelHeader">Home</div>
           <div class="post">
             <div class="centerPanelPost">
-              <div class="profilePic"></div>
+              <img src="images/profile.png" alt="" class="rounded-circle" />
               <div class="centerPanelInput">
                 <input
                   id="postInput"
@@ -103,7 +134,12 @@
               </div>
               <div>
                 <span id="wordCount"></span>
-                <button onclick="postTweet()" type="button" class="tweetButton">
+                <button
+                  onclick="postTweet()"
+                  type="button"
+                  id="tweetButton"
+                  disabled
+                >
                   Tweet
                 </button>
               </div>
@@ -116,7 +152,7 @@
             class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
           >
             <div class="card-header bg-transparent border-0 tweetHeader">
-              <div class="profilePic"></div>
+              <img src="images/profile.png" alt="" class="rounded-circle" />
 
               <div class="username">UserName</div>
               <div class="timePost">. &nbsp;time post</div>
@@ -127,7 +163,7 @@
                 <div
                   class="card-header bg-transparent border-0 text-white tweetHeader"
                 >
-                  <div class="profilePic"></div>
+                  <img src="images/profile.png" alt="" class="rounded-circle" />
                   <div class="username">UserName</div>
                   <div class="timePost">. &nbsp;time post</div>
                 </div>
@@ -144,12 +180,13 @@
               <i class="fas fa-trash-alt"></i>
             </div>
           </div>
-          <!-- below is how twet look like -->
+
+          <!-- below is how tweet look like -->
           <div
             class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
           >
             <div class="card-header bg-transparent border-0 tweetHeader">
-              <div class="profilePic"></div>
+              <img src="images/profile2.png" alt="" class="rounded-circle" />
 
               <div class="username">UserName</div>
               <div class="timePost">. &nbsp;time post</div>
@@ -166,14 +203,54 @@
             </div>
           </div>
         </div>
-
         <!-- Below is right panel -->
-        <div class="col-12 col-md-3 rightPanel">
+        <div class="col-12 col-md-4 rightPanel">
           <div class="rightPanelHeader">
             <div class="rightPanelInput">
               <i class="fas fa-search"></i>
               <input class="searchTwitter" placeholder="Search Twitter" />
             </div>
+          </div>
+          <div class="follow">
+            <div class="followHeader">Who to follow</div>
+            <div class="followSubject">
+              <img src="images/profile2.png" alt="" class="rounded-circle" />
+              <div>
+                <span>BlackJackTheDoctor</span> <br />
+                <span style="color: rgba(134, 151, 164, 1)">@geniusDoctor</span>
+              </div>
+              <button class="followButton" type="button">Follow</button>
+            </div>
+            <!-- ---new follow subject -->
+            <div class="followSubject">
+              <img src="images/profile3.jpg" alt="" class="rounded-circle" />
+              <div>
+                <span>FriendsClub</span> <br />
+                <span style="color: rgba(134, 151, 164, 1)">@FriendsisFun</span>
+              </div>
+              <button class="followButton" type="button">Follow</button>
+            </div>
+            <!-- ---new follow subject -->
+            <div class="followSubject">
+              <img src="images/profile4.jpg" alt="" class="rounded-circle" />
+              <div>
+                <span>It'smeARALE</span> <br />
+                <span style="color: rgba(134, 151, 164, 1)"
+                  >@araleWdrSlump</span
+                >
+              </div>
+              <button class="followButton" type="button">Follow</button>
+            </div>
+            <!-- ---new follow subject -->
+            <div class="followSubject">
+              <img src="images/profile5.jpg" alt="" class="rounded-circle" />
+              <div>
+                <span>KameKameGoku</span> <br />
+                <span style="color: rgba(134, 151, 164, 1)">@kamejoko </span>
+              </div>
+              <button class="followButton" type="button">Follow</button>
+            </div>
+            <div class="followFooter">Show more</div>
           </div>
         </div>
         <!-- ------------------- -->

@@ -17,7 +17,11 @@ let render = () => {
           class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
         >
           <div class="card-header bg-transparent border-0 tweetHeader">
-            <div class="profilePic"></div>
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
 
             <div class="username">${item.user}</div>
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
@@ -28,7 +32,7 @@ let render = () => {
           <div class="card-footer bg-transparent border-0 tweetFunction">
             <i onclick="postTweet()" class="fas fa-comment"></i>
             <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
-            <i class="far fa-heart" id="heart" onclick="like(${index})></i>
+            <i class="far fa-heart" id="heart" onclick="like(${index})"></i>
             <i onclick="postTweet()" class="far fa-edit"></i>
             <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
           </div>
@@ -66,7 +70,11 @@ let render = () => {
           class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
         >
           <div class="card-header bg-transparent border-0 tweetHeader">
-            <div class="profilePic"></div>
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
 
             <div class="username">${item.user}</div>
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
@@ -77,7 +85,11 @@ let render = () => {
               <div
                 class="card-header bg-transparent border-0 text-white tweetHeader"
               >
-                <div class="profilePic"></div>
+              <img
+              src="images/profile.png"
+              alt=""
+              class="rounded-circle"
+            />
                 <div class="username">UserName</div>
                 <div class="timePost">. &nbsp;time post</div>
               </div>
@@ -125,7 +137,11 @@ let render = () => {
           class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
         >
           <div class="card-header bg-transparent border-0 tweetHeader">
-            <div class="profilePic"></div>
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
 
             <div class="username">${item.user}</div>
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
@@ -149,7 +165,11 @@ let render = () => {
           class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
         >
           <div class="card-header bg-transparent border-0 tweetHeader">
-            <div class="profilePic"></div>
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
 
             <div class="username">${item.user}</div>
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
@@ -160,7 +180,11 @@ let render = () => {
               <div
                 class="card-header bg-transparent border-0 text-white tweetHeader"
               >
-                <div class="profilePic"></div>
+              <img
+              src="images/profile.png"
+              alt=""
+              class="rounded-circle"
+            />
                 <div class="username">UserName</div>
                 <div class="timePost">. &nbsp;time post</div>
               </div>
@@ -280,9 +304,16 @@ let postComment = () => {
 let count = () => {
   let input = document.getElementById("postInput").value;
   let inputLetter = input.split("");
-  document.getElementById("wordCount").innerHTML = 140 - inputLetter.length;
+  document.getElementById("wordCount").innerHTML = `${
+    140 - inputLetter.length
+  } left`;
+  document.getElementById("tweetButton").disabled = false;
   if (document.getElementById("wordCount").innerText == 0) {
     document.getElementById("wordCount").style = "color:red";
+  }
+  if (document.getElementById("wordCount").innerText == "140 left") {
+    document.getElementById("tweetButton").disabled = true;
+    document.getElementById("wordCount").innerHTML = "";
   }
 };
 // ---------------------------------------------------
@@ -290,7 +321,6 @@ let count = () => {
 // below is for like function
 let like = (index) => {
   tweets[index].isliked = !tweets[index].isliked;
-  console.log(tweets[index].isliked);
   render(tweets);
 };
 // ---------------------------------------------------
