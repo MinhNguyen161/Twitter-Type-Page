@@ -34,7 +34,6 @@ img {
 .commentSection {
   background-color: rgb(218, 210, 210);
   padding: 5px 5px;
-  display: none;
 }
 .roundFrame {
   overflow: hidden;
@@ -82,5 +81,5 @@ img {
 }
 
 .commentButton {
-    
+
 }

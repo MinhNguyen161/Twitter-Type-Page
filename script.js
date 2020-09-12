@@ -3,13 +3,19 @@ let currentUser = "Lukas";
 let uniqueID = 0;
 let commentId = 0;
 
+// lukas suggests function update()
+let update = () => {
+    render();
+    renderComment();
+}
+
+
 let render = () => {
   tweets.sort(function (a, b) {
     // Turn your strings into dates, and then subtract them
     // to get a value that is either negative, positive, or zero.
     return new Date(b.time) - new Date(a.time);
   });
-  console.log("list", tweets);
   let tweetHTML = tweets
     .map((item, index) => {
       if (item.isliked == false) {
@@ -50,7 +56,7 @@ let render = () => {
                          }" class="commentInput" type="text" placeholder="say something">
                          <button type="button" class="commentButton" id="commentButton${
                            item.id
-                         }" onclick="renderComment(${item.id})">Send</button>
+                         }" onclick="postComment(${item.id})">Send</button>
                      </div>
                  </div>
                     </div>
@@ -185,7 +191,7 @@ let deleteTweet = (id) => {
   //     }
   //   }
 
-  render();
+  update(); //changed from render()
 };
 
 let postTweet = () => {
@@ -206,7 +212,7 @@ let postTweet = () => {
     parent: [],
   };
   tweets.push(tweetObject);
-  render();
+  update(); // changed from render()
 };
 let Retweet = (id) => {
   console.log("Retweeted");
@@ -230,7 +236,7 @@ let Retweet = (id) => {
   document.getElementById("postInput").value = "";
   document.getElementById("wordCount").innerHTML = 140;
   //   ---------------------------------------------------
-  render();
+  update(); // changed from render()
 };
 let tweetFinder = (id) => {
   return tweets.findIndex((item) => item.id === id);
@@ -255,6 +261,27 @@ let like = (index) => {
 
 //below is the script for COMMENT SECTION by Lukas
 
+let commentAttribute = (commentObject) => {
+    let commentString = `<div class="comment" id="comment${commentObject.id}">
+        <div class="commentContent">
+            <div class="roundFrame">
+                <img class="imgComment" src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
+            </div>
+            <div class="commentText">
+                <span class="commentHeader">
+                    <span class="commentUserName"><strong>${commentObject.user}</strong></span>
+                    <span class="commentSetting">
+                        <i class="far fa-edit" ></i>
+                        <i class="fas fa-trash-alt" onclick="removeComment(${commentObject.id})"></i>
+                    </span>
+                </span>
+                <span class="commentSay" id="commentSay${commentObject.id}">${commentObject.content}</span>
+            </div>
+        </div>
+    </div> `;
+    return commentString;
+}
+
 let renderCommentSection = (index) => {
   let stringCommentSection = `
 <div class="commentPosted"></div>
@@ -277,6 +304,8 @@ let toggleCommentSection = (tweetId) => {
   }
 };
 
+
+
 let createCommentObject = () => {
   let commentObject = {
     id: commentId,
@@ -286,31 +315,14 @@ let createCommentObject = () => {
   commentId++;
   return commentObject;
 };
-
-let renderComment = (tweetId) => {
+let postComment = (tweetId) => {
 console.log("begin");
   let tweetObj = tweets[tweetFinder(tweetId)];
   let commentObject = createCommentObject();
   let commentContent = document.getElementById(`commentInput${tweetObj.id}`).value;
   commentObject.content = commentContent;
   tweetObj.comment.push(commentObject);
-  let commentString = `<div class="comment" id="comment${commentObject.id}">
-        <div class="commentContent">
-            <div class="roundFrame">
-                <img class="imgComment" src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-            </div>
-            <div class="commentText">
-                <span class="commentHeader">
-                    <span class="commentUserName"><strong>${commentObject.user}</strong></span>
-                    <span class="commentSetting">
-                        <i class="far fa-edit" ></i>
-                        <i class="fas fa-trash-alt" ></i>
-                    </span>
-                </span>
-                <span class="commentSay" id="commentSay${commentObject.id}">${commentContent}</span>
-            </div>
-        </div>
-    </div> `;
+  let commentString = commentAttribute(commentObject);
 
   document.getElementById(
     `commentPosted${tweetObj.id}`
@@ -318,6 +330,46 @@ console.log("begin");
   console.log("The end of comment render fucntion");
 };
 
+
+
+let renderSingleComment = (tweetObject, commentObject) => {
+    let commentString = commentAttribute(commentObject);
+  document.getElementById(
+    `commentPosted${tweetObject.id}`
+  ).innerHTML += commentString;
+}
+let renderComment = () => {
+    for (tweetObject of tweets) {
+        let commentsList = tweetObject.comment;
+        for (commentObject of commentsList) {
+            renderSingleComment(tweetObject, commentObject);
+        }
+    }
+}
+
+
+let locateComment = (commentId) => {
+    for (tweetObject of tweets) {
+        let commentList = tweetObject.comment;
+        let commentIndex = commentList.findIndex((item) => {
+            console.log("commentObject", item);
+            return item.id == commentId;
+        })
+        return [tweetObject, commentIndex];
+    }
+}
+let removeComment = (commentId) => {
+    console.log("In remove comment", commentId);
+    let listInfo = locateComment(commentId);
+    let tweetObject = listInfo[0];
+    let commentIndex = listInfo[1];
+    console.log("comment", tweetObject.comment[commentIndex])
+    tweetObject.comment.splice(commentIndex,1);
+    update();
+
+
+
+}
 // Event Listener for Comment section
 
 //----------------------------------------
