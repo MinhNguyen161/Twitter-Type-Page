@@ -21,22 +21,22 @@ img {
 }
 
 .leftPanel {
-  border: solid 1px rgb(108, 117, 125, 1);
   border-top: none;
   border-bottom: none;
-  padding-left: 18%;
+  padding-left: 20%;
 }
 
 .centerPanel {
   padding: 0;
+  border-left: solid 1px rgb(108, 117, 125, 1);
+  border-right: solid 1px rgb(108, 117, 125, 1);
 }
 
 .rightPanel {
-  border: solid 1px rgb(108, 117, 125, 1);
   border-top: none;
   border-right: none;
   border-bottom: none;
-  padding-right: 10%;
+  padding: 0 15% 0 30px;
   display: flex;
   flex-direction: column;
 }
@@ -48,6 +48,7 @@ img {
   flex-direction: column;
   background-color: rgba(39, 60, 82, 0.842);
   font-size: 12px;
+  border-radius: 15px;
 }
 
 .followHeader {
@@ -83,6 +84,41 @@ img {
   padding-top: 10px;
   font-size: 14px;
   color: rgba(29, 161, 242, 1);
+}
+
+.trendingList {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  background-color: rgba(39, 60, 82, 0.842);
+  font-size: 12px;
+}
+
+.trendingSubject {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid 1px rgba(134, 151, 164, 1);
+}
+
+.trendingHead {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgba(134, 151, 164, 1);
+}
+
+.trendingContent {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 0;
 }
 
 .centerPanelPost {
@@ -218,6 +254,10 @@ img {
   flex-direction: row;
   justify-content: left;
   align-items: center;
+}
+
+.leftInfo {
+  margin-bottom: 30px;
 }
 
 .leftInfo:hover {
