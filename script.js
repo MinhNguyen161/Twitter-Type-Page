@@ -124,9 +124,6 @@ let render = () => {
                         <i onclick="deleteTweet(${
                           item.id
                         })" class="far fa-trash-alt"></i>
-      
-      
-                
                 </div>
             </div>
         `;
@@ -228,11 +225,13 @@ let postComment = () => {
 };
 
 // below is word count function
-document.getElementById("wordCount").innerHTML = 140;
 let count = () => {
   let input = document.getElementById("postInput").value;
   let inputLetter = input.split("");
   document.getElementById("wordCount").innerHTML = 140 - inputLetter.length;
+  if (document.getElementById("wordCount").innerText == 0) {
+    document.getElementById("wordCount").style = "color:red";
+  }
 };
 // ---------------------------------------------------
 
