@@ -8,10 +8,6 @@ i:hover {
   cursor: pointer;
 }
 
-img {
-  width: 50px;
-}
-
 input:focus {
   outline: none;
 }
@@ -20,8 +16,12 @@ button:focus {
   outline: none;
 }
 
+.profileImg {
+  width: 50px;
+}
+
 .leftPanel {
-  border: solid 1px rgb(56, 68, 77, 1);
+  border: solid 1px rgb(108, 117, 125, 1);
   border-top: none;
   border-bottom: none;
   min-height: 100vh;
@@ -34,7 +34,7 @@ button:focus {
 }
 
 .rightPanel {
-  border: solid 1px rgb(56, 68, 77, 1);
+  border: solid 1px rgb(108, 117, 125, 1);
   border-top: none;
   border-bottom: none;
   padding-right: 10%;
@@ -64,7 +64,7 @@ button:focus {
 .post {
   display: flex;
   flex-direction: column;
-  border: solid 1px rgb(56, 68, 77, 1);
+  border: solid 1px rgb(108, 117, 125, 1);
   border-left: none;
   border-right: none;
   border-bottom: solid 10px #2c364b;
@@ -110,9 +110,38 @@ button:focus {
   border: none;
 }
 
-.retweet {
+.tweet {
   background-color: transparent;
   border-radius: 0;
+}
+
+.tweetHeader {
+  display: flex;
+  flex-direction: row;
+}
+
+.timePost {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.tweetContent {
+  margin-left: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.tweetFunction {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 80px;
+  padding-top: 0;
 }
 
 .centerPanelHeader {
