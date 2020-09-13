@@ -361,6 +361,8 @@ let removeComment = (commentId) => {
   update();
 };
 
+
+
 // Event Listener for Comment section
 
 //----------------------------------------
