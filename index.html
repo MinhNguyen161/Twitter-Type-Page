@@ -19,292 +19,122 @@
     />
   </head>
   <body>
-    <form>
-      <div class="row">
-        <div class="col-12 col-md-4 leftPanel">
-          <!-- Button trigger modal -->
-          <!-- <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            Tweet
-          </button> -->
+    <div>
+      <form>
+        <div class="row">
+          <div class="col-3 leftPanel">
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Tweet
+            </button>
 
-          <!-- Modal -->
-          <!-- <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header"> -->
-          <!-- <h1>Insert input box</h1> -->
-          <!-- <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Insert old tweet
-                  .
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" class="btn btn-primary">Retweet</button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1><!--Insert input box --></h1>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Insert old tweet -->
+                    .
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Retweet
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div> -->
-          <div class="leftPanelHeader">
-            <i class="fab fa-twitter fa-2x" color="white"></i>
+
+            <h2>TWITTER</h2>
           </div>
-          <div class="leftPanelContent">
-            <p class="leftInfo" style="color: rgba(29, 161, 242, 1)">
-              <i class="fas fa-home fa-lg"></i> &nbsp; Home
-            </p>
-            <p class="leftInfo">
-              <i class="fab fa-slack-hash fa-lg"></i> &nbsp; Explore
-            </p>
-            <p class="leftInfo">
-              <i class="far fa-bell fa-lg"></i> &nbsp; Notifications
-            </p>
-            <p class="leftInfo">
-              <i class="far fa-envelope fa-lg"></i> &nbsp; Messages
-            </p>
-            <p class="leftInfo">
-              <i class="far fa-bookmark fa-lg"></i> &nbsp; Bookmarks
-            </p>
-            <p class="leftInfo">
-              <i class="far fa-list-alt fa-lg"></i> &nbsp; Lists
-            </p>
-            <p class="leftInfo">
-              <i class="far fa-user-circle fa-lg"></i> &nbsp; Profile
-            </p>
-          </div>
-          <div class="leftPanelFooter">
-            <img
-              src="images/profile.png"
-              alt=""
-              class="rounded-circle"
-              style="margin-right: 15px"
-            />
-            <div>Lukas</div>
-          </div>
+          <form>
+            <div class="col-6 centerPanel">
+              <div class="post">
+                <div>
+                  <input
+                    id="postInput"
+                    maxlength="140"
+                    onkeyup="count()"
+                    type="text"
+                  />
+                </div>
+                <div class="postFunction">
+                  <div>
+                    <i class="far fa-image"></i>
+                    <i class="fas fa-video"></i>
+                    <i class="far fa-smile"></i>
+                  </div>
+                  <div>
+                    Words remaining:
+                    <span id="wordCount"></span>
+                    <button onclick="postTweet()" type="button">Tweet</button>
+                  </div>
+                </div>
+              </div>
+              <!-- feed section is below -->
+              <div id="feed"></div>
+              <!-- <div class="card border-success mb-3">
+                <div class="card-header bg-transparent border-success">
+                    <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
+                <div>UserName</div>
+                <div>time post</div>
+                </div>
+                <div class="card-body text-success">
+                  <p class="card-text">I'm ok.</p>       
+                  <div class="card border-success mb-3">
+                    <div class="card-header bg-transparent border-success">
+                        <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
+                    <div>UserName</div>
+                    <div>time post</div>
+                    </div>
+                    <div class="card-body text-success">
+                        <p class="card-text">How you doin?.</p>
+                        </div>
+                   </div> 
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                <i class="fas fa-comment"></i>
+                <i class="fas fa-retweet"></i>
+                <i class="far fa-heart"></i>
+                <i class="far fa-edit"></i>
+                <i class="fas fa-trash-alt"></i>
+                </div>
+              </div> -->
+            </div>
+          </form>
+          <div class="col-3 rightPanel"></div>
         </div>
-
-        <!-- Below is center panel -->
-        <div class="col-12 col-md-4 centerPanel">
-          <div class="centerPanelHeader">Home</div>
-          <div class="post">
-            <div class="centerPanelPost">
-              <img src="images/profile.png" alt="" class="rounded-circle" />
-              <div class="centerPanelInput">
-                <input
-                  id="postInput"
-                  maxlength="140"
-                  onkeyup="count()"
-                  type="text"
-                  placeholder="What's happening?"
-                />
-              </div>
-            </div>
-            <div class="privacySettingPost">
-              <i class="fas fa-globe-asia fa-lg"></i> &nbsp; Everyone can reply
-            </div>
-            <div class="postFunction">
-              <div>
-                <i class="far fa-image fa-lg"></i> &nbsp;
-                <i class="fas fa-video fa-lg"></i> &nbsp;
-                <i class="far fa-smile fa-lg"></i>
-              </div>
-              <div>
-                <span id="wordCount"></span>
-                <button
-                  onclick="postTweet()"
-                  type="button"
-                  id="tweetButton"
-                  disabled
-                >
-                  Tweet
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- feed section is below -->
-          <div id="feed"></div>
-          <!-- BELOW IS HOW RETWEET LOOK LIKE -->
-          <div
-            class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
-          >
-            <div class="card-header bg-transparent border-0 tweetHeader">
-              <img src="images/profile.png" alt="" class="rounded-circle" />
-
-              <div class="username">UserName</div>
-              <div class="timePost">. &nbsp;time post</div>
-            </div>
-            <div class="card-body text-success tweetContent">
-              <p class="text-white">This is how retweet look like</p>
-              <div class="card border-secondary rounded mb-3 tweet">
-                <div
-                  class="card-header bg-transparent border-0 text-white tweetHeader"
-                >
-                  <img src="images/profile.png" alt="" class="rounded-circle" />
-                  <div class="username">UserName</div>
-                  <div class="timePost">. &nbsp;time post</div>
-                </div>
-                <div class="card-body text-white">
-                  <p class="card-text">How you doin?</p>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer bg-transparent border-0 tweetFunction">
-              <i class="fas fa-comment"></i>
-              <i class="fas fa-retweet"></i>
-              <i class="far fa-heart"></i>
-              <i class="far fa-edit"></i>
-              <i class="fas fa-trash-alt"></i>
-            </div>
-          </div>
-
-          <!-- below is how tweet look like -->
-          <div
-            class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
-          >
-            <div class="card-header bg-transparent border-0 tweetHeader">
-              <img src="images/profile2.png" alt="" class="rounded-circle" />
-
-              <div class="username">UserName</div>
-              <div class="timePost">. &nbsp;time post</div>
-            </div>
-            <div class="card-body text-success tweetContent">
-              <p class="text-white">This is how tweet look like</p>
-            </div>
-            <div class="card-footer bg-transparent border-0 tweetFunction">
-              <i class="fas fa-comment"></i>
-              <i class="fas fa-retweet"></i>
-              <i class="far fa-heart"></i>
-              <i class="far fa-edit"></i>
-              <i class="fas fa-trash-alt"></i>
-            </div>
-          </div>
-        </div>
-        <!-- Below is right panel -->
-        <div class="col-12 col-md-4 rightPanel">
-          <div class="rightPanelHeader">
-            <div class="rightPanelInput">
-              <i class="fas fa-search"></i>
-              <input class="searchTwitter" placeholder="Search Twitter" />
-            </div>
-          </div>
-          <div class="follow">
-            <div class="followHeader">Who to follow</div>
-            <div class="followSubject">
-              <img src="images/profile2.png" alt="" class="rounded-circle" />
-              <div>
-                <span>BlackJackTheDoctor</span> <br />
-                <span style="color: rgba(134, 151, 164, 1)">@geniusDoctor</span>
-              </div>
-              <button class="followButton" type="button">Follow</button>
-            </div>
-            <!-- ---new follow subject -->
-            <div class="followSubject">
-              <img src="images/profile3.jpg" alt="" class="rounded-circle" />
-              <div>
-                <span>FriendsClub</span> <br />
-                <span style="color: rgba(134, 151, 164, 1)">@FriendsisFun</span>
-              </div>
-              <button class="followButton" type="button">Follow</button>
-            </div>
-            <!-- ---new follow subject -->
-            <div class="followSubject">
-              <img src="images/profile4.jpg" alt="" class="rounded-circle" />
-              <div>
-                <span>It'smeARALE</span> <br />
-                <span style="color: rgba(134, 151, 164, 1)"
-                  >@araleWdrSlump</span
-                >
-              </div>
-              <button class="followButton" type="button">Follow</button>
-            </div>
-            <!-- ---new follow subject -->
-            <div class="followSubject">
-              <img src="images/profile5.jpg" alt="" class="rounded-circle" />
-              <div>
-                <span>KameKameGoku</span> <br />
-                <span style="color: rgba(134, 151, 164, 1)">@kamejoko </span>
-              </div>
-              <button class="followButton" type="button">Follow</button>
-            </div>
-            <div class="followFooter">Show more</div>
-          </div>
-          <!-- Trending list below -->
-          <div class="trendingList">
-            <div class="followHeader">Trends for you</div>
-            <div class="trendingSubject">
-              <div class="trendingHead">
-                <div>Music . Trending</div>
-                <i class="fas fa-angle-down fa-lg"></i>
-              </div>
-              <p class="trendingContent">#MartinGarix</p>
-              <div class="trendingHead">410K Tweets</div>
-            </div>
-            <!-- more trending subject -->
-            <div class="trendingSubject">
-              <div class="trendingHead">
-                <div>Music . Trending</div>
-                <i class="fas fa-angle-down fa-lg"></i>
-              </div>
-              <p class="trendingContent">#DenVau</p>
-              <div class="trendingHead">10.1K Tweets</div>
-            </div>
-            <!-- more trending subject -->
-            <div class="trendingSubject">
-              <div class="trendingHead">
-                <div>TVShow . Trending</div>
-                <i class="fas fa-angle-down fa-lg"></i>
-              </div>
-              <p class="trendingContent">#Friends</p>
-              <div class="trendingHead">280K Tweets</div>
-            </div>
-            <!-- more trending subject -->
-            <div class="trendingSubject">
-              <div class="trendingHead">
-                <div>Social . Trending</div>
-                <i class="fas fa-angle-down fa-lg"></i>
-              </div>
-              <p class="trendingContent">#TrungQuoc</p>
-              <div class="trendingHead">540K Tweets</div>
-            </div>
-            <!-- more trending subject -->
-            <div class="trendingSubject">
-              <div class="trendingHead">
-                <div>Technology . Trending</div>
-                <i class="fas fa-angle-down fa-lg"></i>
-              </div>
-              <p class="trendingContent">#Technology</p>
-              <div class="trendingHead">3.1M Tweets</div>
-            </div>
-            <div class="followFooter">Show more</div>
-          </div>
-        </div>
-        <!-- ------------------- -->
-      </div>
-    </form>
+      </form>
+    </div>
 
     <!-- script -->
     <script src="https://momentjs.com/downloads/moment.js"></script>
