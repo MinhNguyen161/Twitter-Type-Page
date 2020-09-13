@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <div class="card border-success mb-3">
-        <div class="card-header bg-transparent border-success">
-            <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-            <div>${item.user}</div>
-            <div>${moment(item.time).fromNow()}</div>
-        </div>
-        <div class="card-body text-success">
-        <h5 class="card-title"></h5>
-        <p class="card-text">${item.content}</p>
-        </div>
-        <div class="card-footer bg-transparent border-success">
-                <i onclick="postTweet()" class="fas fa-comment"></i>    
-                <i onclick="Retweet(
-                  item.id
-                          )" class="fas fa-retweet"></i>
-                <i class="far fa-heart" id="heart" onclick="like(index)">                            
-                <i onclick="postTweet()" class="far fa-edit"></i>
-                <i onclick="deleteTweet(
-                  item.id
-                )" class="far fa-edit"></i>
-
-
-        
-        </div>
+  </head>
+  <body>
+    <div
+      class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
+    >
+      <div class="card-header bg-transparent border-0 tweetHeader">
+        <div class="profilePic"></div>
+        <div class="username">${item.user}</div>
+        <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
+      </div>
+      <div class="card-body text-success tweetContent">
+        <p class="text-white">${item.content}</p>
+      </div>
+      <div class="card-footer bg-transparent border-0 tweetFunction">
+        <i onclick="postTweet()" class="fas fa-comment"></i>
+        <i onclick="Retweet($item.id)" class="fas fa-retweet"></i>
+        <i
+          class="fas fa-heart"
+          id="heart"
+          style="color: red"
+          onclick="like($index)"
+        >
+          <span id="heartQty">1</span></i
+        >
+        <i onclick="postTweet()" class="far fa-edit"></i>
+        <i onclick="deleteTweet($item.id)" class="far fa-trash-alt"></i>
+      </div>
     </div>
-</body>
+  </body>
 </html>

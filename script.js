@@ -1,15 +1,6 @@
 let tweets = [];
-let commentHistory = [];
 let currentUser = "Lukas";
 let uniqueID = 0;
-let commentId = 0;
-
-// lukas suggests function update()
-let update = () => {
-  render();
-  renderCommentSection();
-  renderComment();
-};
 
 let render = () => {
   tweets.sort(function (a, b) {
@@ -17,132 +8,205 @@ let render = () => {
     // to get a value that is either negative, positive, or zero.
     return new Date(b.time) - new Date(a.time);
   });
+  console.log("list", tweets);
   let tweetHTML = tweets
     .map((item, index) => {
       if (item.isliked == false) {
         if (!item.isRetweet) {
-          return `
-                <div class="card border-success mb-3">
-                    <div class="card-header bg-transparent border-success">
-                        <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-                        <div>${item.user}</div>
-                        <div>${moment(item.time).fromNow()}</div>
-                    </div>
-                    <div class="card-body text-success">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text">${item.content}</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-success">
-                            <i  class="fas fa-comment" onclick="toggleCommentSection(${
-                              item.id
-                            })"></i>    
-                            <i onclick="Retweet(${
-                              item.id
-                            })" class="fas fa-retweet"></i>
-                            <i class="far fa-heart" id="heart" onclick="like(${index})"> </i>                           
-                            <i onclick="postTweet()" class="far fa-edit"></i>
-                            <i onclick="deleteTweet(${
-                              item.id
-                            })" class="far fa-trash-alt"></i>
-                    </div>
-                    <div class="commentSection" id="commentSection${
-                      item.id
-                    }"></div>
-                    </div>
-                </div>
-            `;
+          return `<div
+          class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
+        >
+          <div class="card-header bg-transparent border-0 tweetHeader">
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
+
+            <div class="username">${item.user}</div>
+            <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
+          </div>
+          <div class="card-body text-success tweetContent">
+            <p class="text-white">${item.content}</p>
+          </div>
+          <div class="card-footer bg-transparent border-0 tweetFunction">
+            <i onclick="postTweet()" class="fas fa-comment"></i>
+            <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+            <i class="far fa-heart" id="heart" onclick="like(${index})"></i>
+            <i onclick="postTweet()" class="far fa-edit"></i>
+            <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
+          </div>
+        </div>`;
+
+          //   `
+          //         <div class="card border-success mb-3">
+          //             <div class="card-header bg-transparent border-success">
+          //                 <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
+          //                 <div>${item.user}</div>
+          //                 <div>${moment(item.time).fromNow()}</div>
+          //             </div>
+          //             <div class="card-body text-success">
+          //             <h5 class="card-title"></h5>
+          //             <p class="card-text">${item.content}</p>
+          //             </div>
+          //             <div class="card-footer bg-transparent border-success">
+          //                     <i onclick="postTweet()" class="fas fa-comment"></i>
+          //                     <i onclick="Retweet(${
+          //                       item.id
+          //                     })" class="fas fa-retweet"></i>
+          //                     <i class="far fa-heart" id="heart" onclick="like(${index})"> </i>
+          //                     <i onclick="postTweet()" class="far fa-edit"></i>
+          //                     <i onclick="deleteTweet(${
+          //                       item.id
+          //                     })" class="far fa-trash-alt"></i>
+
+          //             </div>
+          //         </div>
+          //     `
         } else {
           //change the format here to a retweet post
-          return `
-      <div class="card border-success mb-3">
-          <div class="card-header bg-transparent border-success">
-              <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-              <div>${item.user}</div>
-              <div>${moment(item.time).fromNow()}</div>
+
+          return `<div
+          class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
+        >
+          <div class="card-header bg-transparent border-0 tweetHeader">
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
+
+            <div class="username">${item.user}</div>
+            <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
           </div>
-          <div class="card-body text-success">
-          <h5 class="card-title"></h5>
-          <p class="card-text">${item.content}</p>
+          <div class="card-body text-success tweetContent">
+            <p class="text-white">${item.content}</p>
+            <div class="card border-secondary rounded mb-3 tweet">
+              <div
+                class="card-header bg-transparent border-0 text-white tweetHeader"
+              >
+              <img
+              src="images/profile.png"
+              alt=""
+              class="rounded-circle"
+            />
+                <div class="username">UserName</div>
+                <div class="timePost">. &nbsp;time post</div>
+              </div>
+              <div class="card-body text-white">
+                <p class="card-text">How you doin?</p>
+              </div>
+            </div>
           </div>
-          <div class="card-footer bg-transparent border-success">
-                  <i  class="fas fa-comment"></i>    
-                  <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
-                  <i class="far fa-heart" id="heart"onclick="like(${index})"> </i>      
-                  <i onclick="postTweet()" class="far fa-edit"></i>
-                  <i onclick="deleteTweet(${
-                    item.id
-                  })" class="far fa-trash-alt"></i>
+          <div class="card-footer bg-transparent border-0 tweetFunction">
+          <i onclick="postTweet()" class="fas fa-comment"></i>    
+          <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+          <i class="far fa-heart" id="heart"onclick="like(${index})"> </i>      
+          <i onclick="postTweet()" class="far fa-edit"></i>
+          <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
           </div>
-          <div class="commentSection" id="commentSection${item.id}"></div>
-           
-      </div>
-  `;
+        </div>`;
+
+          //           `
+          //       <div class="card border-success mb-3">
+          //           <div class="card-header bg-transparent border-success">
+          //               <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
+          //               <div>${item.user}</div>
+          //               <div>${moment(item.time).fromNow()}</div>
+          //           </div>
+          //           <div class="card-body text-success">
+          //           <h5 class="card-title"></h5>
+          //           <p class="card-text">${item.content}</p>
+          //           </div>
+          //           <div class="card-footer bg-transparent border-success">
+          //                   <i onclick="postTweet()" class="fas fa-comment"></i>
+          //                   <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+          //                   <i class="far fa-heart" id="heart"onclick="like(${index})"> </i>
+          //                   <i onclick="postTweet()" class="far fa-edit"></i>
+          //                   <i onclick="deleteTweet(${
+          //                     item.id
+          //                   })" class="far fa-trash-alt"></i>
+
+          //           </div>
+          //       </div>
+          //   `
         }
       } else {
         if (!item.isRetweet) {
-          return `
-                      <div class="card border-success mb-3">
-                          <div class="card-header bg-transparent border-success">
-                              <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-                              <div>${item.user}</div>
-                              <div>${moment(item.time).fromNow()}</div>
-                          </div>
-                          <div class="card-body text-success">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text">${item.content}</p>
-                          </div>
-                          <div class="card-footer bg-transparent border-success">
-                                  <i onclick="postTweet()" class="fas fa-comment"></i>    
-                                  <i onclick="Retweet(${
-                                    item.id
-                                  })" class="fas fa-retweet"></i>
-                                  <i class="fas fa-heart" id="heart" style="color:red"
-                                  onclick="like(${index})">
-                                  <span id="heartQty">1</span></i>
-                                    <i onclick="postTweet()" class="far fa-edit"></i>
-                                  <i onclick="deleteTweet(${
-                                    item.id
-                                  })" class="far fa-trash-alt"></i>
-                          </div>
-                          <div class="commentSection" id="commentSection${
-                            item.id
-                          }"></div>
-                      </div>
-                  `;
+          return `<div
+          class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
+        >
+          <div class="card-header bg-transparent border-0 tweetHeader">
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
+
+            <div class="username">${item.user}</div>
+            <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
+          </div>
+          <div class="card-body text-success tweetContent">
+            <p class="text-white">${item.content}</p>
+          </div>
+          <div class="card-footer bg-transparent border-0 tweetFunction">
+            <i onclick="postTweet()" class="fas fa-comment"></i>
+            <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+            <i class="fas fa-heart" id="heart" style="color:red"
+            onclick="like(${index})">
+            <span id="heartQty">1</span></i>
+            <i onclick="postTweet()" class="far fa-edit"></i>
+            <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
+          </div>
+        </div>`;
         } else {
           //change the format here to a retweet post
-          return `
-            <div class="card border-success mb-3">
-                <div class="card-header bg-transparent border-success">
-                    <img src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-                    <div>${item.user}</div>
-                    <div>${moment(item.time).fromNow()}</div>
-                </div>
-                <div class="card-body text-success">
-                <h5 class="card-title"></h5>
-                <p class="card-text">${item.content}</p>
-                </div>
-                <div class="card-footer bg-transparent border-success">
-                        <i onclick="postTweet()" class="fas fa-comment"></i>    
-                        <i onclick="Retweet(${
-                          item.id
-                        })" class="fas fa-retweet"></i>
-                        <i class="fas fa-heart" id="heart" style="color:red"
-                        onclick="like(${index})">
-                        <span id="heartQty">1</span></i>
-                        <i onclick="postTweet()" class="far fa-edit"></i>
-                        <i onclick="deleteTweet(${
-                          item.id
-                        })" class="far fa-trash-alt"></i>
-                </div>
-                <div class="commentSection" id="commentSection${item.id}"></div>
+          return `<div
+          class="card border-left-0 border-right-0 border-top-0 border-secondary mb-3 tweet"
+        >
+          <div class="card-header bg-transparent border-0 tweetHeader">
+          <img
+          src="images/profile.png"
+          alt=""
+          class="rounded-circle"
+        />
+
+            <div class="username">${item.user}</div>
+            <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
+          </div>
+          <div class="card-body text-success tweetContent">
+            <p class="text-white">${item.content}</p>
+            <div class="card border-secondary rounded mb-3 tweet">
+              <div
+                class="card-header bg-transparent border-0 text-white tweetHeader"
+              >
+              <img
+              src="images/profile.png"
+              alt=""
+              class="rounded-circle"
+            />
+                <div class="username">UserName</div>
+                <div class="timePost">. &nbsp;time post</div>
+              </div>
+              <div class="card-body text-white">
+                <p class="card-text">How you doin?</p>
+              </div>
             </div>
-        `;
+          </div>
+          <div class="card-footer bg-transparent border-0 tweetFunction">
+          <i onclick="postTweet()" class="fas fa-comment"></i>    
+          <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+          <i class="fas fa-heart" id="heart" style="color:red"
+            onclick="like(${index})">
+            <span id="heartQty">1</span></i>      
+          <i onclick="postTweet()" class="far fa-edit"></i>
+          <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
+          </div>
+        </div>`;
         }
       }
     })
     .join("");
-
   document.getElementById("feed").innerHTML = tweetHTML;
 };
 
@@ -150,9 +214,14 @@ let getHashTag = (text) => {};
 
 let deleteTweet = (id) => {
   let obj = tweets.find((item) => item.id == id);
+  console.log("ooo", obj);
   let parentList = obj.parent;
+
   let filtered = tweets.filter((item) => parentList.includes(item.id) == false);
   filtered = filtered.filter((item) => item.id !== id);
+
+  console.log("way", filtered);
+
   tweets = filtered;
   //   let index = tweetFinder(id);
 
@@ -174,7 +243,7 @@ let deleteTweet = (id) => {
   //     }
   //   }
 
-  update(); //changed from render()
+  render();
 };
 
 let postTweet = () => {
@@ -195,7 +264,7 @@ let postTweet = () => {
     parent: [],
   };
   tweets.push(tweetObject);
-  update(); // changed from render()
+  render();
 };
 let Retweet = (id) => {
   console.log("Retweeted");
@@ -219,148 +288,39 @@ let Retweet = (id) => {
   document.getElementById("postInput").value = "";
   document.getElementById("wordCount").innerHTML = 140;
   //   ---------------------------------------------------
-  update(); // changed from render()
+  render();
 };
 let tweetFinder = (id) => {
   return tweets.findIndex((item) => item.id === id);
 };
 
+let renderComment = () => {};
+
+let postComment = () => {
+  let commentContent = document.getElementById("");
+};
+
 // below is word count function
-document.getElementById("wordCount").innerHTML = 140;
 let count = () => {
   let input = document.getElementById("postInput").value;
   let inputLetter = input.split("");
-  document.getElementById("wordCount").innerHTML = 140 - inputLetter.length;
+  document.getElementById("wordCount").innerHTML = `${
+    140 - inputLetter.length
+  } left`;
+  document.getElementById("tweetButton").disabled = false;
+  if (document.getElementById("wordCount").innerText == 0) {
+    document.getElementById("wordCount").style = "color:red";
+  }
+  if (document.getElementById("wordCount").innerText == "140 left") {
+    document.getElementById("tweetButton").disabled = true;
+    document.getElementById("wordCount").innerHTML = "";
+  }
 };
 // ---------------------------------------------------
 
 // below is for like function
 let like = (index) => {
   tweets[index].isliked = !tweets[index].isliked;
-  console.log(tweets[index].isliked);
   render(tweets);
 };
 // ---------------------------------------------------
-
-//below is the script for COMMENT SECTION by Lukas
-
-let commentAttribute = (commentObject) => {
-  let commentString = `<div class="comment" id="comment${commentObject.id}">
-        <div class="commentContent">
-            <div class="roundFrame">
-                <img class="imgComment" src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/>
-            </div>
-            <div class="commentText">
-                <span class="commentHeader">
-                    <span class="commentUserName"><strong>${commentObject.user}</strong></span>
-                    <span class="commentSetting">
-                        <i class="far fa-edit" ></i>
-                        <i class="fas fa-trash-alt" id="commentDeleteButton${commentObject.id}" onclick="removeComment(${commentObject.id})"></i>
-                    </span>
-                </span>
-                <span class="commentSay" id="commentSay${commentObject.id}">${commentObject.content}</span>
-            </div>
-        </div>
-    </div> `;
-  return commentString;
-};
-
-let commentSectionAttribute = (tweetObject) => {
-  let commentSectionString = `
-  <div class="commentPosted" id="commentPosted${tweetObject.id}"></div>
-  <div class="commentPost">
-      <div class="roundFrame"><img class="imgComment" src="https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png"/></div>
-      <input id="commentInput${tweetObject.id}" class="commentInput" type="text" placeholder="say something">
-      <button type="button" class="commentButton" id="commentButton${tweetObject.id}" onclick="postComment(${tweetObject.id})">Send</button>
-  </div>
-  
-  `;
-  return commentSectionString;
-};
-
-let renderSingleCommentSection = (tweetObject) => {
-  let commentSectionString = commentSectionAttribute(tweetObject);
-  document.getElementById(
-    `commentSection${tweetObject.id}`
-  ).innerHTML = commentSectionString;
-};
-
-let renderCommentSection = () => {
-  for (tweetObject of tweets) {
-    renderSingleCommentSection(tweetObject);
-  }
-};
-
-let toggleCommentSection = (tweetId) => {
-  let commentSectionId = document.getElementById(`commentSection${tweetId}`);
-  if (commentSectionId.style.display === "none") {
-    commentSectionId.style.display = "block";
-  } else {
-    commentSectionId.style.display = "none";
-  }
-};
-
-let createCommentObject = () => {
-  let commentObject = {
-    id: commentId,
-    user: currentUser,
-    content: "",
-  };
-  commentId++;
-  return commentObject;
-};
-
-let addCommentToHistory = (commentObject) => {
-  commentHistory.push(commentObject);
-};
-
-let postComment = (tweetId) => {
-  let tweetObj = tweets[tweetFinder(tweetId)];
-  let commentObject = createCommentObject();
-  addCommentToHistory(commentObject);
-  let commentContent = document.getElementById(`commentInput${tweetObj.id}`)
-    .value;
-  commentObject.content = commentContent;
-
-  tweetObj.comment.push(commentObject);
-  commentObject.inWhatTweet = tweetObj;
-  let commentString = commentAttribute(commentObject);
-
-  document.getElementById(
-    `commentPosted${tweetObj.id}`
-  ).innerHTML += commentString;
-};
-
-let renderSingleComment = (tweetObject, commentObject) => {
-  let commentString = commentAttribute(commentObject);
-  document.getElementById(
-    `commentPosted${tweetObject.id}`
-  ).innerHTML += commentString;
-};
-let renderComment = () => {
-  for (tweetObject of tweets) {
-    let commentsList = tweetObject.comment;
-    for (commentObject of commentsList) {
-      renderSingleComment(tweetObject, commentObject);
-    }
-  }
-};
-
-let removeComment = (commentId) => {
-  for (commentObject of commentHistory) {
-    if (commentObject.id == commentId) {
-      let containerTweet = commentObject.inWhatTweet;
-      let listComment = containerTweet.comment;
-      console.log("list of comment", listComment);
-      let remove = listComment.filter((commentObject) => {
-        return commentObject.id != commentId;
-      });
-      containerTweet.comment = remove;
-    }
-  }
-  update();
-};
-
-// Event Listener for Comment section
-
-//----------------------------------------
