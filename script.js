@@ -27,7 +27,9 @@ let render = () => {
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
           </div>
           <div class="card-body text-success tweetContent">
-            <p class="text-white">${item.content}</p>
+            <p class="text-white">${item.content} <span> <a href="">${
+            item.hashtag[i]
+          }</a></span></p>
           </div>
           <div class="card-footer bg-transparent border-0 tweetFunction">
             <i onclick="postTweet()" class="fas fa-comment"></i>
@@ -210,8 +212,6 @@ let render = () => {
   document.getElementById("feed").innerHTML = tweetHTML;
 };
 
-let getHashTag = (text) => {};
-
 let deleteTweet = (id) => {
   let obj = tweets.find((item) => item.id == id);
   console.log("ooo", obj);
@@ -246,24 +246,46 @@ let deleteTweet = (id) => {
   render();
 };
 
+let getHashTag = (text) => {
+  let separateText = text.split(" ");
+  let hashtag = separateText.filter((item) => item.startsWith("#"));
+  return hashtag;
+};
+
+let removeHashtag = (text) => {
+  let separateText = text.split(" ");
+  let onlyText = [];
+  for (i = 0; i < separateText.length; i++) {
+    if (!separateText[i].startsWith("#")) {
+      onlyText.push(separateText[i]);
+    }
+  }
+  return onlyText;
+};
+
 let postTweet = () => {
   console.log("tweeted");
   uniqueID++;
   let text = document.getElementById("postInput").value;
   let postUser = currentUser;
-  let postHashTag = getHashTag(text);
   let tweetObject = {
     user: postUser,
-    content: text,
+    content: "",
     isliked: false,
     time: Date.now(),
     isRetweet: false,
-    hastag: postHashTag,
+    hashtag: [],
     comment: [],
     id: uniqueID,
     parent: [],
   };
+  let postHashTag = getHashTag(text);
+  let newContent = removeHashtag(text);
+  tweetObject.hashtag = postHashTag;
+  tweetObject.content = newContent.join(" ");
   tweets.push(tweetObject);
+  document.getElementById("postInput").value = "";
+  document.getElementById("wordCount").innerHTML = 140;
   render();
 };
 let Retweet = (id) => {
@@ -283,6 +305,7 @@ let Retweet = (id) => {
     id: uniqueID,
     parent: [],
   };
+
   tweets.push(retweetObject);
   //   below is clearing the input and reset wordcount value
   document.getElementById("postInput").value = "";

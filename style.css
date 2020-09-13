@@ -2,6 +2,11 @@ body {
   background-color: rgb(23, 32, 44);
   color: white;
   margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 i:hover {
@@ -23,7 +28,7 @@ img {
 .leftPanel {
   border-top: none;
   border-bottom: none;
-  padding-left: 20%;
+  padding-left: 15%;
 }
 
 .centerPanel {
@@ -36,7 +41,7 @@ img {
   border-top: none;
   border-right: none;
   border-bottom: none;
-  padding: 0 15% 0 30px;
+  padding: 0 10% 0 30px;
   display: flex;
   flex-direction: column;
 }
