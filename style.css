@@ -301,3 +301,62 @@ img {
   color: rgba(134, 151, 164, 1);
   opacity: 1;
 }
+
+/** Comment section*/
+
+.imgComment {
+  width: 30px;
+  height: auto;
+}
+.commentSection {
+  background-color: rgb(218, 210, 210);
+  padding: 5px 5px;
+}
+.roundFrame {
+  overflow: hidden;
+  margin-right: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.commentInput {
+  width: 100%;
+  margin-left: 5px;
+}
+
+.comment {
+  padding-top: 5px;
+  display: flex;
+  overflow-wrap: anywhere;
+}
+
+.commentPost {
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentContent {
+  display: flex;
+  justify-content: space-between;
+}
+.commentText {
+  flex: 1;
+  display: flex;
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 3%;
+  flex-direction: column;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.commentSetting {
+  justify-self: end;
+}
+
+.commentButton {
+
+}
