@@ -280,7 +280,7 @@ let addParent = (id) => {
   tweets[tweetFinder(id)].parent.push(uniqueID);
 };
 
-let Retweet = (id) => {
+let Retweet = () => {
   console.log("Retweeted");
   let postUser = currentUser;
   let text = document.getElementById("retweetInput").value;
@@ -300,9 +300,9 @@ let Retweet = (id) => {
   let postHashTag = getHashTag(text);
   let newContent = removeHashtag(text);
   let newUrl = getUrl(text);
-  tweetObject.hashtag = postHashTag;
-  tweetObject.content = newContent.join(" ");
-  tweetObject.url = newUrl;
+  retweetObject.hashtag = postHashTag;
+  retweetObject.content = newContent.join(" ");
+  retweetObject.url = newUrl;
   tweets.push(retweetObject);
   //   below is clearing the input and reset wordcount value
   document.getElementById("postInput").value = "";
