@@ -31,20 +31,25 @@ let render = () => {
           alt=""
           class="rounded-circle"
         />
-
             <div class="username">${item.user}</div>
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
           </div>
           <div class="card-body text-success tweetContent">
             <p class="text-white">${item.content}<span> ${item.hashtag
-            .map((itemHashTag) => `<a href="*">${itemHashTag}</a>`)
+            .map(
+              (tagItem) =>
+                `<a href="#" onclick="getTagTweet('${tagItem}')">${tagItem}</a>`
+            )
             .join(" ")}</span></p>
+            <img src="${item.url}" style="width: 100%; margin-bottom: 20px;"/>
           </div>
           <div class="card-footer bg-transparent border-0 tweetFunction">
             <i onclick="toggleCommentSection(${
               item.id
             })" class="fas fa-comment"></i>
-            <i onclick="Retweet(${item.id})" class="fas fa-retweet"></i>
+            <i 
+            onclick="addParent(${item.id})" 
+            data-toggle="modal" data-target="#myModal" class="fas fa-retweet"></i>
             <i class="far fa-heart" id="heart" onclick="like(${index})"></i>
             <i onclick="postTweet()" class="far fa-edit"></i>
             <i onclick="deleteTweet(${item.id})" class="far fa-trash-alt"></i>
@@ -111,7 +116,13 @@ let render = () => {
             <div class="timePost">. &nbsp; ${moment(item.time).fromNow()}</div>
           </div>
           <div class="card-body text-success tweetContent">
-            <p class="text-white">${item.content}</p>
+          <p class="text-white">${item.content}<span> ${item.hashtag
+            .map(
+              (tagItem) =>
+                `<a href="#" onclick="getTagTweet('${tagItem}')">${tagItem}</a>`
+            )
+            .join(" ")}</span></p>
+            <img src="${item.url}" style="width: 100%; margin-bottom: 20px;"/>
           </div>
           <div class="card-footer bg-transparent border-0 tweetFunction">
             <i onclick="toggleCommentSection(${
@@ -215,11 +226,20 @@ let getHashTag = (text) => {
   return hashtag;
 };
 
+let getUrl = (text) => {
+  let separateText = text.split(" ");
+  let urlText = separateText.filter((item) => item.startsWith("http"));
+  return urlText;
+};
+
 let removeHashtag = (text) => {
   let separateText = text.split(" ");
   let onlyText = [];
   for (i = 0; i < separateText.length; i++) {
-    if (!separateText[i].startsWith("#")) {
+    if (
+      !separateText[i].startsWith("#") &&
+      !separateText[i].startsWith("http")
+    ) {
       onlyText.push(separateText[i]);
     }
   }
@@ -241,34 +261,48 @@ let postTweet = () => {
     comment: [],
     id: uniqueID,
     parent: [],
+    urlLink: "",
   };
   let postHashTag = getHashTag(text);
   let newContent = removeHashtag(text);
+  let newUrl = getUrl(text);
   tweetObject.hashtag = postHashTag;
   tweetObject.content = newContent.join(" ");
+  tweetObject.url = newUrl;
   tweets.push(tweetObject);
   document.getElementById("postInput").value = "";
   document.getElementById("wordCount").innerHTML = 140;
   render();
 };
 
-let Retweet = (id) => {
-  console.log("Retweeted");
+let addParent = (id) => {
   uniqueID++;
   tweets[tweetFinder(id)].parent.push(uniqueID);
+};
+
+let Retweet = (id) => {
+  console.log("Retweeted");
   let postUser = currentUser;
+  let text = document.getElementById("retweetInput").value;
   //   let postHashTag = getHashTag(text);
   let retweetObject = {
     user: postUser,
-    content: "Retweet",
+    content: "",
     isliked: false,
     time: Date.now(),
     isRetweet: true,
-    hastag: "postHashTag",
+    hashtag: "postHashTag",
     comment: [],
     id: uniqueID,
     parent: [],
+    urlLink: "",
   };
+  let postHashTag = getHashTag(text);
+  let newContent = removeHashtag(text);
+  let newUrl = getUrl(text);
+  tweetObject.hashtag = postHashTag;
+  tweetObject.content = newContent.join(" ");
+  tweetObject.url = newUrl;
   tweets.push(retweetObject);
   //   below is clearing the input and reset wordcount value
   document.getElementById("postInput").value = "";
@@ -297,6 +331,15 @@ let count = () => {
   }
 };
 // ---------------------------------------------------
+
+// below is filter tweet by tag
+let getTagTweet = (tagItem) => {
+  let tagTweets = tweets.filter((item) => item.hashtag.includes(tagItem));
+  console.log(tagTweets);
+  tweets = tagTweets;
+  render();
+};
+// --------------------------
 
 // below is for like function
 let like = (index) => {

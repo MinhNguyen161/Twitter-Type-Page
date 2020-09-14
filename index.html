@@ -22,29 +22,20 @@
     <form>
       <div class="row">
         <div class="col-12 col-md-4 leftPanel">
-          <!-- Button trigger modal -->
-          <!-- <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            Tweet
-          </button> -->
-
-          <!-- Modal -->
-          <!-- <div
+          <!-- below is modal----- -->
+          <!-- Modal Pop-up -->
+          <div
             class="modal fade"
-            id="exampleModal"
+            id="myModal"
             tabindex="-1"
+            role="dialog"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog">
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header"> -->
-          <!-- <h1>Insert input box</h1> -->
-          <!-- <button
+                <div class="modal-header">
+                  <button
                     type="button"
                     class="close"
                     data-dismiss="modal"
@@ -54,22 +45,30 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  Insert old tweet
-                  .
+                  <div class="centerPanelInput">
+                    <!-- input model -->
+                    <input
+                      id="retweetInput"
+                      type="text"
+                      placeholder="Say something"
+                    />
+                    <!-- input model -->
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button
-                    type="button"
-                    class="btn btn-secondary"
                     data-dismiss="modal"
+                    type="button"
+                    onclick="Retweet()"
+                    class="btn btn-primary"
                   >
-                    Close
+                    Retweet!
                   </button>
-                  <button type="button" class="btn btn-primary">Retweet</button>
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+          <!-- -------------------- -->
           <div class="leftPanelHeader">
             <i class="fab fa-twitter fa-2x" color="white"></i>
           </div>
@@ -154,21 +153,29 @@
             <div class="card-header bg-transparent border-0 tweetHeader">
               <img src="images/profile.png" alt="" class="rounded-circle" />
 
-              <div class="username">UserName</div>
-              <div class="timePost">. &nbsp;time post</div>
+              <div class="username">Lukas</div>
+              <div class="timePost">. &nbsp; 1 minute ago</div>
             </div>
             <div class="card-body text-success tweetContent">
-              <p class="text-white">This is how retweet look like</p>
+              <p class="text-white">Looks nice, Arale!</p>
               <div class="card border-secondary rounded mb-3 tweet">
                 <div
                   class="card-header bg-transparent border-0 text-white tweetHeader"
                 >
-                  <img src="images/profile.png" alt="" class="rounded-circle" />
-                  <div class="username">UserName</div>
-                  <div class="timePost">. &nbsp;time post</div>
+                  <img
+                    src="images/profile4.jpg"
+                    alt=""
+                    class="rounded-circle"
+                  />
+                  <div class="username">It'smeArale</div>
+                  <div class="timePost">. &nbsp; 2 minutes ago</div>
                 </div>
                 <div class="card-body text-white">
-                  <p class="card-text">How you doin?</p>
+                  <p class="card-text">Just changed my avatar :)</p>
+                  <img
+                    src="images/profile4.jpg"
+                    style="width: 100%; margin-bottom: 20px"
+                  />
                 </div>
               </div>
             </div>
@@ -188,11 +195,14 @@
             <div class="card-header bg-transparent border-0 tweetHeader">
               <img src="images/profile2.png" alt="" class="rounded-circle" />
 
-              <div class="username">UserName</div>
-              <div class="timePost">. &nbsp;time post</div>
+              <div class="username">BlackJackTheDoctor</div>
+              <div class="timePost">. &nbsp; 2 days ago</div>
             </div>
             <div class="card-body text-success tweetContent">
-              <p class="text-white">This is how tweet look like</p>
+              <p class="text-white">
+                Why "Grey's anatomy" has so many season? OMG! I shoud have
+                watched "The good doctor".
+              </p>
             </div>
             <div class="card-footer bg-transparent border-0 tweetFunction">
               <i class="fas fa-comment"></i>
